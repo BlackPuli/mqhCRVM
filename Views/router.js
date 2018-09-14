@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {StackNavigator, TabNavigator, NavigationActions} from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
+import {Easing, Animated} from 'react-native';
 
 import Courses from '../Views/Courses';
 import Onboarding from './onboarding';
@@ -29,13 +30,14 @@ const Router = StackNavigator({
         screen: ({navigation}) => <Courses screenProps={{ rootNavigation: navigation }} />,
         navigationOptions: ({navigation}) => ({
             header: null,
-            gesturesEnabled: false 
-        })
+            gesturesEnabled: true 
+        }),
     },
     },{
         transitionConfig: () => ({
             transitionSpec:{
-                duration:0
+                duration:200,
+                easing: Easing.ease,
             }
         }),
         initialRouteName: 'Onboarding'
