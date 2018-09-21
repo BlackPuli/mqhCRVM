@@ -3,33 +3,40 @@ import {Text, View, TouchableOpacity, StyleSheet, Image, ImageBackground} from '
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 
-const colorText = "#f7a81b";
+const gold = "#f7a81b";
 
 export default class Onboarding extends PureComponent{
+    static navigationOptions = {
+        header:({navigation}) => {
+            return (
+                <View style={{height:60, backgroundColor:gold, flexDirection:'row'}}>
+                    <TouchableOpacity style={{flex:1, backgroundColor:'#c10042'}} >
+                        <Icon name="menu" color="#fff" size={40} containerStyle={{marginTop:10}} />
+                    </TouchableOpacity>
+                    <View style={{flex:5}}>
+                        <Text style={{fontSize: 25, textAlign: 'center', fontWeight: 'bold', marginTop:15, color:'#fff'}} >MANOS QUE HABLAN</Text>
+                    </View>
+                </View>
+            )
+        }
+    }
+
     constructor(props) {
         super(props);
-        this.nav = props.screenProps.rootNavigation
     }
 
     _getCourses = () => {
-        console.log("OTHER COURSES");
+        this.props.navigation.push('Courses')
     }
 
     render() {
         return (
             <View style={{flex:1}}>
-                <View style={{height:60, backgroundColor:colorText, flexDirection:'row', flex:1}}>
-                    <View style={{flex:1, backgroundColor:'#c10042'}} >
-                        <Icon name="menu" color="#fff" size={40} containerStyle={{marginTop:10}} />
-                    </View>
-                    <View style={{flex:5}}>
-                        <Text style={{fontSize: 25, textAlign: 'center', fontWeight: 'bold', marginTop:15, color:'#fff'}} >MANOS QUE HABLAN</Text>
-                    </View>
-                </View>
-                <View style={{flex:8, backgroundColor:'#fff', paddingTop:'10%'}}>
-                    <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1}]} onPress={() => {this.nav.navigate("Courses")}} >
+                
+                <View style={{flex:1, backgroundColor:'#fff', paddingTop:'10%'}}>
+                    <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1}]} onPress={() => {this._getCourses()}} >
                         <View>
-                            <Icon name="search" color={colorText} size={60} />
+                            <Icon name="search" color={gold} size={60} />
                             <Text style={[styles.text]}>
                                 Básico
                             </Text>
@@ -37,7 +44,7 @@ export default class Onboarding extends PureComponent{
                     </TouchableOpacity>
                     <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1,marginTop:20}]} onPress={() => {this._getCourses()}} >
                         <View>
-                            <Icon name="bubble" type="simple-line-icon" color={colorText} size={50} />
+                            <Icon name="bubble" type="simple-line-icon" color={gold} size={50} />
                             <Text style={[styles.text]}>
                                 Comunicación
                             </Text>
@@ -45,7 +52,7 @@ export default class Onboarding extends PureComponent{
                     </TouchableOpacity>
                     <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1,marginBottom:20}]} onPress={() => {this._getCourses()}} >
                     <View>
-                    <Icon name="plus-outline" type="material-community" color={colorText} size={70} />
+                    <Icon name="plus-outline" type="material-community" color={gold} size={70} />
                     <Text style={[styles.text]}>
                         Emergencias
                     </Text>
@@ -73,7 +80,7 @@ const styles = new StyleSheet.create({
         color: "#fff",
         fontSize:20,
         textAlign: 'center',
-        backgroundColor:colorText,
+        backgroundColor:gold,
         borderRadius: 20,
         paddingVertical: 5,
         paddingHorizontal: 5,

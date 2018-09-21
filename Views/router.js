@@ -1,9 +1,36 @@
 import React, {Component} from 'react';
-import {StackNavigator} from 'react-navigation';
-import {Easing, Animated} from 'react-native';
+import {StackNavigator, createStackNavigator } from 'react-navigation';
+import {Easing, Animated, Dimensions} from 'react-native';
 
 import Courses from '../Views/Courses';
 import Onboarding from './onboarding';
+
+const {width} = Dimensions.get('window');
+
+const RightTransition = (index, position) => {
+    const sceneRange = [index - 1, index];
+    const outputPosition = [width,0];
+    const transition = position.interpolate({
+        inputRange: sceneRange,
+        outputRange: outputPosition
+    })
+
+    return{
+        transform: [{translateX: transition}]
+    }
+}
+
+const NavigationConfig = () => {
+    return{
+        screenInterpolator: (sceneProps) =>{
+            const position = sceneProps.position;
+            const scene = sceneProps.scene;
+            const index = scene.index;
+
+            return RightTransition(index, position);
+        }
+    }
+}
 
 export default class AppRouter extends Component{
     constructor(props) {
@@ -18,27 +45,20 @@ export default class AppRouter extends Component{
 
 }
 
-const Router = StackNavigator({
+const Router = createStackNavigator({
     Onboarding:{
-        screen: ({navigation}) => <Onboarding screenProps={{ rootNavigation: navigation }} />,
+        screen: Onboarding,
         navigationOptions: ({navigation}) => ({
-            header: null,
             gesturesEnabled: false 
         })
     },
     Courses:{
-        screen: ({navigation}) => <Courses screenProps={{ rootNavigation: navigation }} />,
+        screen: Courses,
         navigationOptions: ({navigation}) => ({
-            header: null,
             gesturesEnabled: true 
         }),
     },
     },{
-        transitionConfig: () => ({
-            transitionSpec:{
-                duration:200,
-                easing: Easing.ease,
-            }
-        }),
+        transitionConfig: NavigationConfig,
         initialRouteName: 'Onboarding'
     });

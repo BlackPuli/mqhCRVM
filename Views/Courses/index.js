@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, Image, TouchableOpacity} from 'react-native';
+import { Icon } from "react-native-elements";
+
+const gold = "#f7a81b";
 
 const lessons = [
     {
@@ -30,6 +33,20 @@ const lessons = [
 ]
 
 export default class Courses extends Component{
+    static navigationOptions = {
+        header :({navigation}) =>{
+            return(
+            <View style={{height:60, backgroundColor:gold, flexDirection:'row'}}>
+                <TouchableOpacity style={{flex:1, backgroundColor:'#c10042'}} onPress={() => {navigation.pop();}}>
+                    <Icon name="arrow-back" color="#fff" size={40} containerStyle={{marginTop:10}} />
+                </TouchableOpacity>
+                <View style={{flex:5}}>
+                    <Text style={{fontSize: 25, textAlign: 'center', fontWeight: 'bold', marginTop:15, color:'#fff'}} >Básico</Text>
+                </View>
+            </View>
+        )}
+    }
+
     constructor(props) {
         super(props);
     }
@@ -61,9 +78,6 @@ export default class Courses extends Component{
         return(
             <View style={{flex:1, backgroundColor:'#f4f4f4', paddingTop: 20}}>
                 <View style={{flex:1}}>
-                    <Text style={{fontSize: 30, textAlign:'center', fontWeight:'bold', marginTop:40}}>CURSO BÁSICO</Text>
-                </View>
-                <View style={{flex:4}}>
                     {this._renderCourses()}
                 </View>
             </View>
@@ -73,12 +87,12 @@ export default class Courses extends Component{
 
 const styles = new StyleSheet.create({
     buttonColor:{
-        backgroundColor:'#20b2aa', 
+        backgroundColor:gold, 
         marginHorizontal:5, 
         borderRadius: 15, 
-        borderWidth: 5, 
-        borderColor:'#1ca099',
-        shadowColor: '#031111',
+        // borderWidth: 5, 
+        // borderColor:'#1ca099',
+        // shadowColor: '#031111',
         shadowOffset: {width: 0, height: 5},
         shadowRadius: 5,
         shadowOpacity: 0.2,
