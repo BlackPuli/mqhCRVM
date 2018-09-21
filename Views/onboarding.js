@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, TouchableHighlight} from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
+import {Text, View, TouchableOpacity, StyleSheet, Image, ImageBackground} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import {Icon} from 'react-native-elements';
+
+const colorText = "#f7a81b";
 
 export default class Onboarding extends PureComponent{
     constructor(props) {
@@ -10,38 +13,45 @@ export default class Onboarding extends PureComponent{
 
     _getCourses = () => {
         console.log("OTHER COURSES");
-
     }
 
     render() {
         return (
-            <View style={{flex:1, backgroundColor:'#f4f4f4', paddingTop:20}}>
-            {/* <LinearGradient colors={['#00ABAA, #D459D7, #EAEE60']}> */}
-                <View style={{flex:1}}>
-                    <Text style={{fontSize: 30, textAlign: 'center', fontWeight: 'bold', marginTop:100}} >Manos Que Hablan</Text>
-                </View>
-                <View style={{flex:2}}>
-                    <View style={{flexDirection: 'row'}}>
-                    <TouchableHighlight underlayColor="#136a66" style={[styles.button, {flex:1}]} onPress={() => {this.nav.navigate("Courses")}} >
-                        <Text style={{fontSize: 20, textAlign:'center', marginVertical: 35}}>
-                            BÁSICO
-                        </Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight underlayColor="#136a66" style={[styles.button, {flex:1}]} onPress={() => {this._getCourses()}} >
-                        <Text style={{fontSize: 20, textAlign:'center', marginVertical: 20}}>
-                            TABLEROS DE COMUNICACIÓN
-                        </Text>
-                    </TouchableHighlight>
+            <View style={{flex:1}}>
+                <View style={{height:60, backgroundColor:colorText, flexDirection:'row', flex:1}}>
+                    <View style={{flex:1, backgroundColor:'#c10042'}} >
+                        <Icon name="menu" color="#fff" size={40} containerStyle={{marginTop:10}} />
                     </View>
+                    <View style={{flex:5}}>
+                        <Text style={{fontSize: 25, textAlign: 'center', fontWeight: 'bold', marginTop:15, color:'#fff'}} >MANOS QUE HABLAN</Text>
+                    </View>
+                </View>
+                <View style={{flex:8, backgroundColor:'#fff', paddingTop:'10%'}}>
+                    <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1}]} onPress={() => {this.nav.navigate("Courses")}} >
+                        <View>
+                            <Icon name="search" color={colorText} size={60} />
+                            <Text style={[styles.text]}>
+                                Básico
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1,marginTop:20}]} onPress={() => {this._getCourses()}} >
+                        <View>
+                            <Icon name="bubble" type="simple-line-icon" color={colorText} size={50} />
+                            <Text style={[styles.text]}>
+                                Comunicación
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity underlayColor="#136a66" style={[styles.button, {flex:1,marginBottom:20}]} onPress={() => {this._getCourses()}} >
                     <View>
-                    <TouchableHighlight underlayColor="#136a66" style={[{ marginTop:20},styles.button]} onPress={() => {this._getCourses()}} >
-                        <Text style={{fontSize: 20, textAlign:'center', marginVertical: 40}}>
-                            EMERGENCIAS
-                        </Text>
-                    </TouchableHighlight>
-                    </View>
+                    <Icon name="plus-outline" type="material-community" color={colorText} size={70} />
+                    <Text style={[styles.text]}>
+                        Emergencias
+                    </Text>
                 </View>
-                {/* </LinearGradient> */}
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -50,18 +60,23 @@ export default class Onboarding extends PureComponent{
 
 const styles = new StyleSheet.create({
     button:{
-        backgroundColor:'#20b2aa', 
-        marginHorizontal:5, 
-        borderRadius: 15, 
-        borderWidth: 5, 
-        borderColor:'#1ca099',
+        backgroundColor:'transparent',
         shadowColor: '#031111',
-        shadowOffset: {width: 0, height: 5},
-        shadowRadius: 5,
-        shadowOpacity: 0.2,
+        alignSelf: 'center',
+        width:'40%'
         // borderRightColor:'#1ca099', 
         // borderLeftColor: '#1ca099', 
         // borderTopColor:'#105955', 
         // borderBottomColor: '#105955', 
+    },
+    text:{
+        color: "#fff",
+        fontSize:20,
+        textAlign: 'center',
+        backgroundColor:colorText,
+        borderRadius: 20,
+        paddingVertical: 5,
+        paddingHorizontal: 5,
+        marginTop:20
     }
 })
