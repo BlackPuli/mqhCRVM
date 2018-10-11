@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {StackNavigator, createStackNavigator } from 'react-navigation';
 import {Easing, Animated, Dimensions} from 'react-native';
 
-import Courses from '../Views/Courses';
+import Basics from './Basics';
 import Onboarding from './onboarding';
+import Alphabet from './Basics/Alphabet';
 
 const {width} = Dimensions.get('window');
 
@@ -52,12 +53,18 @@ const Router = createStackNavigator({
             gesturesEnabled: false 
         })
     },
-    Courses:{
-        screen: Courses,
+    Basics:{
+        screen: Basics,
         navigationOptions: ({navigation}) => ({
             gesturesEnabled: true 
         }),
     },
+    Alphabet:{
+        screen: Alphabet,
+        navigationOptions: ({navigation}) => ({
+            gesturesEnabled: true
+        })
+    }
     },{
         transitionConfig: NavigationConfig,
         initialRouteName: 'Onboarding'
