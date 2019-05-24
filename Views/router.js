@@ -3,6 +3,7 @@ import {StackNavigator, createStackNavigator } from 'react-navigation';
 import {Easing, Animated, Dimensions} from 'react-native';
 
 import Basics from './Basics';
+import Emergencys from './Emergencys'
 import Onboarding from './onboarding';
 import Alphabet from './Basics/Alphabet';
 
@@ -55,6 +56,12 @@ const Router = createStackNavigator({
     },
     Basics:{
         screen: Basics,
+        navigationOptions: ({navigation}) => ({
+            gesturesEnabled: true 
+        }),
+    },
+    Emergencys:{
+        screen: Emergencys,
         navigationOptions: ({navigation}) => ({
             gesturesEnabled: true 
         }),
