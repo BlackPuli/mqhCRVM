@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, Image, TouchableOpacity,Animated,Easing} from 'react-native';
 import { Icon } from "react-native-elements";
+import Header from '../components/header';
 
 const gold = "#f7a81b";
 
@@ -39,17 +40,13 @@ const lessons = [
 
 export default class Courses extends Component{
     static navigationOptions = {
-        header :({navigation}) =>{
-            return(
-            <View style={{height:60, backgroundColor:gold, flexDirection:'row'}}>
-                <TouchableOpacity style={{flex:1, backgroundColor:'#c10042'}} onPress={() => {navigation.pop();}}>
-                    <Icon name="arrow-back" color="#fff" size={40} containerStyle={{marginTop:10}} />
-                </TouchableOpacity>
-                <View style={{flex:5}}>
-                    <Text style={{fontSize: 25, textAlign: 'center', fontWeight: 'bold', marginTop:15, color:'#fff'}} >Básico</Text>
-                </View>
-            </View>
-        )}
+        header :({navigation}) =>(
+            <Header 
+                title="Básico"
+                leftIcon="arrow-back"
+                leftAction={() => { navigation.pop()}}
+            />
+        )
     }
 
     constructor(props) {
