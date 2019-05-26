@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {StackNavigator, createStackNavigator } from 'react-navigation';
-import {Easing, Animated, Dimensions} from 'react-native';
+import {Easing, Animated, Dimensions, SafeAreaView} from 'react-native';
 
 import Basics from './Basics';
 import Emergencys from './Emergencys'
 import Onboarding from './onboarding';
 import Alphabet from './Basics/Alphabet';
+import Face from './Emergencys/Face';
 
 const {width} = Dimensions.get('window');
 
@@ -41,11 +42,32 @@ export default class AppRouter extends Component{
 
     render() {
         return (
-            <Router />
+            <SafeAreaView style={{ flex: 1 }}>
+                <Router />
+            </SafeAreaView>
         );
     }
 
 }
+
+const Emerg = createStackNavigator({
+  Home:{
+    screen: Emergencys,
+    navigationOptions: ({navigation}) => ({
+      gesturesEnabled: false 
+    })
+  },
+  Face:{
+    screen: Face,
+    navigationOptions: ({navigation}) => ({
+      gesturesEnabled: false 
+    })
+  }
+},{
+  transitionConfig: NavigationConfig,
+  initialRouteName: 'Home'
+})
+
 
 const Router = createStackNavigator({
     Onboarding:{
@@ -61,9 +83,10 @@ const Router = createStackNavigator({
         }),
     },
     Emergencys:{
-        screen: Emergencys,
+        screen: Emerg,
         navigationOptions: ({navigation}) => ({
-            gesturesEnabled: true 
+            gesturesEnabled: true,
+            header: null,
         }),
     },
     Alphabet:{
