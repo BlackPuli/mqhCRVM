@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, Image, ImageBackground, Animated, Easing} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, Animated, Easing} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Icon} from 'react-native-elements';
 import Header from './components/header';
